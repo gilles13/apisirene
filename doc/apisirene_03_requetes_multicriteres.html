@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>apisirene_03_requetes_multicriteres</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">apisirene_03_requetes_multicriteres</h1>
+
+
+
+<div id="une-requête-multicritères-cest-quoi" class="section level2">
+<h2>Une requête multicritères, c’est quoi ?</h2>
+<p>Selon la <a href="https://www.sirene.fr/static-resources/documentation/multi_appel_311.html">documentation</a>,
+une recherche multicritères est :</p>
+<blockquote>
+<p>Il est possible via les deux services d’interrogation sur Siren et
+Siret d’effectuer une recherche libre permettant de combiner la totalité
+des variables présentes dans la réponse du service unitaire Siren
+(respectivement Siret). Cette recherche permet d’obtenir une liste des
+Siren (respectivement des Siret) qui répondent à des critères passés par
+un paramètre q (query) prenant la forme d’une requête, éventuellement
+complétée par les paramètres date, debut, nombre et curseur en fonction
+des besoins.</p>
+</blockquote>
+<p>Cette recherche multicritères permet donc d’obtenir des listes de
+Siren (ou Siret) sur la base d’une recherche visant à limiter les
+résultats selon des modalités choisies.</p>
+<p>Il est par exemple possible d’extraire la liste des établissements
+exerçant une <a href="https://www.insee.fr/fr/information/2406147">activité</a> de
+boulangerie pâtisserie (code APE 10.71C) dans une commune ou un
+arrondissement municipal déterminé.</p>
+<p>Il est également possible d’obtenir la liste des unités légales d’une
+certaine <a href="https://www.insee.fr/fr/information/2028129">catégorie
+juridique</a>. Ces exemples sont présentés ci-dessous.</p>
+</div>
+<div id="sur-quelles-variables-peut-on-filtrer" class="section level2">
+<h2>Sur quelles variables peut-on filtrer ?</h2>
+<p>Toutes les variables, yc les indicatrices. Il y a quelques subtilités
+pour les champs de type date, comme mentionné <a href="https://www.sirene.fr/static-resources/documentation/multi_histo_non_histo_311.html">ici</a>.</p>
+</div>
+<div id="concrètement-comment-ça-marche" class="section level2">
+<h2>Concrètement, comment ça marche ?</h2>
+<p>Pour obtenir le résultat d’une requête multicritères, il faut
+utiliser les fonctions <code>insee_siret_multi_get</code> et
+<code>insee_siret_multi_make</code>.</p>
+<p>Pour cela, il faut passer une chaine de caractères à la fonction
+<code>insee_siret_multi_make</code> précisant les valeurs et les champs
+concernés. La structure de la chaine de caractère est de la forme
+“VARIABLE:VALEUR”. Il est possible d’utiliser les opérateurs logiques
+<code>AND</code> et <code>OR</code> (respectivement avec les caractères
+&amp; et |).</p>
+<p>Les noms des VARIABLES sont fixés :</p>
+<ul>
+<li>DEPCOM pour le lieu d’implantation de l’établissement ;</li>
+<li>CJ pour la catégorie juridique ;</li>
+<li>NAF pour l’activité principale exercée.</li>
+</ul>
+<p>Les autres variables ne sont pas (encore ?) prises en charge par le
+<em>package</em> (PR <em>welcome</em> !)</p>
+</div>
+<div id="des-exemples" class="section level2">
+<h2>Des exemples ?</h2>
+<p>Je souhaite obtenir la liste des boulangeries du 1er arrondissement
+municipal de Marseille.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;apisirene&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">insee_utils_siret_multi_make</span>(<span class="st">&quot;DEPCOM:13201 &amp; NAF:10.71C&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>    <span class="fu">insee_get_siret_multi</span>()</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; Votre requete concerne 180 entreprises ou etablissements</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt;  Debut de traitement: 2025-09-10 08:12:01.805394</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; 2025-09-10 08:12:07.298393</span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; Fin de traitement : 2025-09-10 08:12:07.298699</span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; # A tibble: 180 × 37</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;    gSiren    gNic  gSiret     gStatutDiffEtb gDateCreaEtb gTreffEtb gAnneeEffEtb</span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;      &lt;lgl&gt;          &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt;  1 057812018 00026 057812018… NA             1992-05-08   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt;  2 060804051 00013 060804051… NA             1960-01-01   00        2022        </span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt;  3 069802361 00050 069802361… NA             1982-06-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt;  4 073712630 00018 073712630… NA             1965-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt;  5 307188946 00015 307188946… NA             1900-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt;  6 307188946 00031 307188946… NA             1993-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt;  7 318151727 00019 318151727… NA             1980-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt;  8 319682563 00055 319682563… NA             1990-02-19   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co">#&gt;  9 319682563 00063 319682563… NA             1990-02-19   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co">#&gt; 10 322322827 00013 322322827… NA             1980-08-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co">#&gt; # ℹ 170 more rows</span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="co">#&gt; # ℹ 30 more variables: gApeRmEtb &lt;chr&gt;, gDateDernTraitEtb &lt;chr&gt;,</span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt; #   gEtbSiege &lt;lgl&gt;, gNbPeriodEtb &lt;int&gt;, ulEtatAdm &lt;chr&gt;, ulDenom &lt;chr&gt;,</span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co">#&gt; #   ulSigle &lt;chr&gt;, ulDenomUsuelle &lt;chr&gt;, ulCodeAPE &lt;chr&gt;, ulCJ &lt;chr&gt;,</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co">#&gt; #   aEtbDEPCOM &lt;chr&gt;, aEtbNumVoie &lt;chr&gt;, aEtbTypeVoie &lt;chr&gt;, aEtbLibVoie &lt;chr&gt;,</span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co">#&gt; #   aEtbCodePostal &lt;chr&gt;, aEtbLibCom &lt;chr&gt;, aEtbCoordX &lt;chr&gt;, aEtbCoordY &lt;chr&gt;,</span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">#&gt; #   pDateFin &lt;lgl&gt;, pDateDeb &lt;chr&gt;, pEtatAdmEtb &lt;chr&gt;, pChgtEtatAdmEtb &lt;lgl&gt;, …</span></span></code></pre></div>
+<p>Lorsque l’utilisateur souhaitera filtrer plus finement, il sera alors
+nécessaire d’utiliser les symboles de priorité.</p>
+<p>Si la recherche porte sur les établissements dont la catégorie
+juridique est entrepreneur individuel (code = 1000) ou SARL (code =
+5499) et dont l’activité principale est soit boulangerie (code 10.71B et
+10.71C), soit charcuterie (code 10.13B) dans le 1er, 5e et 8e
+arrondissement municipal de Marseille :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">insee_utils_siret_multi_make</span>(<span class="st">&quot;(DEPCOM:13201 | DEPCOM:13205 | DEPCOM:13208) &amp; (NAF:10.71B | NAF:10.71C | NAF:10.13B) &amp; (CJ:1000 | CJ:5499)&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>    <span class="fu">insee_get_siret_multi</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    <span class="fu">head</span>(<span class="at">n =</span> <span class="dv">15</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="co">#&gt; Votre requete concerne 354 entreprises ou etablissements</span></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="co">#&gt;  Debut de traitement: 2025-09-10 08:12:07.70887</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="co">#&gt; 2025-09-10 08:12:21.238656</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="co">#&gt; Fin de traitement : 2025-09-10 08:12:21.238978</span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="co">#&gt; # A tibble: 15 × 37</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="co">#&gt;    gSiren    gNic  gSiret     gStatutDiffEtb gDateCreaEtb gTreffEtb gAnneeEffEtb</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;      &lt;lgl&gt;          &lt;chr&gt;        &lt;chr&gt;     &lt;chr&gt;       </span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="co">#&gt;  1 057812018 00026 057812018… NA             1992-05-08   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="co">#&gt;  2 060804051 00013 060804051… NA             1960-01-01   00        2022        </span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="co">#&gt;  3 064722812 00019 064722812… NA             1900-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="co">#&gt;  4 064722812 00027 064722812… NA             1900-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt;  5 069802361 00050 069802361… NA             1982-06-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt;  6 073712630 00018 073712630… NA             1965-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a><span class="co">#&gt;  7 307188946 00015 307188946… NA             1900-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a><span class="co">#&gt;  8 307188946 00031 307188946… NA             1993-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a><span class="co">#&gt;  9 307489997 00014 307489997… NA             1964-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a><span class="co">#&gt; 10 314207507 00026 314207507… NA             1986-07-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a><span class="co">#&gt; 11 318151727 00019 318151727… NA             1980-01-01   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a><span class="co">#&gt; 12 318634243 00055 318634243… NA             1996-08-26   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a><span class="co">#&gt; 13 318634243 00063 318634243… NA             1999-08-10   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a><span class="co">#&gt; 14 319682563 00055 319682563… NA             1990-02-19   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a><span class="co">#&gt; 15 319682563 00063 319682563… NA             1990-02-19   &lt;NA&gt;      &lt;NA&gt;        </span></span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a><span class="co">#&gt; # ℹ 30 more variables: gApeRmEtb &lt;chr&gt;, gDateDernTraitEtb &lt;chr&gt;,</span></span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a><span class="co">#&gt; #   gEtbSiege &lt;lgl&gt;, gNbPeriodEtb &lt;int&gt;, ulEtatAdm &lt;chr&gt;, ulDenom &lt;chr&gt;,</span></span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a><span class="co">#&gt; #   ulSigle &lt;chr&gt;, ulDenomUsuelle &lt;chr&gt;, ulCodeAPE &lt;chr&gt;, ulCJ &lt;chr&gt;,</span></span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a><span class="co">#&gt; #   aEtbDEPCOM &lt;chr&gt;, aEtbNumVoie &lt;chr&gt;, aEtbTypeVoie &lt;chr&gt;, aEtbLibVoie &lt;chr&gt;,</span></span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a><span class="co">#&gt; #   aEtbCodePostal &lt;chr&gt;, aEtbLibCom &lt;chr&gt;, aEtbCoordX &lt;chr&gt;, aEtbCoordY &lt;chr&gt;,</span></span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a><span class="co">#&gt; #   pDateFin &lt;lgl&gt;, pDateDeb &lt;chr&gt;, pEtatAdmEtb &lt;chr&gt;, pChgtEtatAdmEtb &lt;lgl&gt;,</span></span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a><span class="co">#&gt; #   pEns1Etb &lt;chr&gt;, pEns2Etb &lt;chr&gt;, pEns3Etb &lt;chr&gt;, pChgtEnsgEtb &lt;lgl&gt;, …</span></span></code></pre></div>
+</div>
+<div id="avertissements" class="section level2">
+<h2>Avertissements</h2>
+<p>Le nombre d’établissements retournés par la requête peut-être
+relativement élevé. Si vous chercher tous les établissements dont
+l’activité est boulangerie patisserie en France, vous aurez des
+difficultés à obtenir une réponse, compte tenu des limites de l’API (30
+appels par minutes).</p>
+<p>Il est possible de connaitre le nombre d’échos d’une requête
+mutlicritères ainsi (celle de l’exemple ci-dessus) :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">insee_utils_siret_multi_make</span>(<span class="st">&quot;NAF:10.71C&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>    <span class="fu">insee_utils_howmany_echos</span>()</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="co">#&gt; [1] 112884</span></span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+---
+title: "apisirene-multicriteres"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{apisirene-multicriteres}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(apisirene)
+```
+
+# Qu'est-ce qu'une requete multicritères ?
+
+C'est une requete qui va filtrer les réponses selon des critères
+
+# Comment on fait une requete multicritères ?
+
+Alors ça, c'est vraiment galère ...
+
+J'ai la flemme de documenter la chose, désolé.

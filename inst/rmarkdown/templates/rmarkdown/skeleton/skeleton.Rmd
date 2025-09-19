@@ -1,0 +1,258 @@
+---
+title: "`r params$mysiret`"
+date: "`r Sys.Date()`"
+author: "`r Sys.getenv('USER')`"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    theme:
+      bslib: true
+params:
+  mysiret: ""
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r config, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,
+                      warning=FALSE,
+                      message=FALSE,
+                      error = TRUE,
+                      fig.align = "center",
+                      out = '50%')
+
+if(.Platform$OS.type == "unix") {
+	library("gillespack")
+	library("apisirene")
+} else {
+	library("apisirene")
+	Sys.setenv(HTTPS_PROXY = "http://proxy-rie.http.insee.fr:8080")
+	Sys.setenv(HTTP_PROXY = "http://proxy-rie.http.insee.fr:8080")
+}
+
+library("dplyr")
+library("tidyr")
+library("bsicons")
+library("bslib")
+library("flexdashboard")
+
+mydf <- insee_get_siret_all(params$mysiret) |> insee_parse_siret_resp()
+```
+
+```{r}
+codeacti <- 
+	mydf |> insee_utils_siret_sel(mycateg = "activitePrincipaleUniteLegale")
+trefful <- 
+	mydf |> insee_utils_siret_sel(mycateg = "trancheEffectifsUniteLegale")
+treffetab <- 
+	mydf |> insee_utils_siret_sel(myindic = "trancheEffectifsEtablissement")
+etatul <- 
+	mydf |> insee_utils_siret_sel(mycateg = "etatAdministratifUniteLegale")
+datederniertrait <- 
+	mydf |> insee_utils_siret_sel(myindic = "dateDernierTraitementEtablissement")
+datederniertraitparse <- as.POSIXct(datederniertrait, format = "%Y-%m-%dT%H:%M:%S")
+# dateaafficher <- format(datederniertraitparse, format = "%d-%m-%Y %H:%M")
+dateaafficher <- format(datederniertraitparse, format = "%d-%m-%Y")
+etatul <- ifelse(etatul == "A", "Actif", "Fermé")
+libcodeacti <- findmynaflib(codeacti)
+libtrefful <- findmytreff(trefful)
+libtreffetab <- findmytreff(treffetab)
+cjetab <- 
+	mydf |> insee_utils_siret_sel(myindic = "uniteLegale", mycateg = "categorieJuridiqueUniteLegale")
+libcjetab <- findmycj(cjetab)
+categentr <- 
+	mydf |> insee_utils_siret_sel(myindic = "uniteLegale", mycateg = "categorieEntreprise")
+if(identical(categentr, character(0))) {
+  libcategentr <- "Inconnue"
+} else {
+  libcategentr <- switch(categentr,
+                         "GE" = "Grande entreprise",
+                         "PME" = "Petite et moyenne entreprise",
+                         "ETI" = "Etablissement de taille intermédiaire")
+}
+
+etatetabfun <- function(x) {
+  if(insee_utils_find_nb_periodes(x) == 1) {
+    res <- 
+      x |> 
+      insee_utils_siret_sel(
+        myindic = "periodesEtablissement",
+        mycateg = "etatAdministratifEtablissement")
+  } else {
+    res <- 
+      x |> 
+      dplyr::filter(indic == "periodesEtablissement", 
+                    categ == "1",
+                    souscat == "etatAdministratifEtablissement") |> 
+			dplyr::select(val) |> 
+			dplyr::pull()
+  }
+  return(res)
+}
+etatetab <- etatetabfun(mydf)
+libetatetab <- ifelse(etatetab == "A", "Actif", "Fermé")
+
+```
+
+Row {data-height=550}
+-------------------------------------
+
+### Identification
+
+```{r}
+siretetab <- 
+	mydf |> 
+	insee_utils_siret_sel(myindic = "siret")
+
+denometab <- 
+	mydf |> 
+	insee_utils_siret_sel(mycateg = "denominationUniteLegale")
+
+
+if(insee_utils_find_nb_periodes(mydf) == 1) {
+  enseigneetab <- 
+    mydf |> 
+    insee_utils_siret_sel(myindic = "periodesEtablissement", mycateg = "enseigne1Etablissement")
+} else {
+  enseigneetab <- 
+    mydf |>  
+    filter(indic == "periodesEtablissement",
+           categ == "1",
+           souscat == "enseigne1Etablissement") |> 
+    select(val) |> 
+    pull()
+}
+
+denomus <- insee_utils_siret_sel(mydf, mycateg = "denominationUsuelle1UniteLegale")
+
+sigleetab <- 
+	mydf |> 
+	insee_utils_siret_sel(myindic = "uniteLegale", mycateg = "sigleUniteLegale")
+
+bslib::value_box(
+  title = siretetab,
+  value = denometab,
+	theme = "dark",
+  showcase = bsicons::bs_icon("bank2"),
+  shiny::h5(sigleetab),
+  shiny::h5(enseigneetab),
+	shiny::h4(denomus),
+	shiny::h5(bsicons::bs_icon("activity"), paste0(codeacti, " (", libcodeacti, ")")),
+	shiny::p(bsicons::bs_icon("buildings"), paste0(cjetab, " (", libcjetab, ")")),
+	shiny::p(" "),
+	shiny::p("")
+)
+
+
+```
+
+Row {data-height=750}
+-------------------------------------
+
+### 
+
+```{r}
+numvoie <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "numeroVoieEtablissement")
+typevoie <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "typeVoieEtablissement")
+libvoie <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "libelleVoieEtablissement")
+codepostal <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "codePostalEtablissement")
+libcommune <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "libelleCommuneEtablissement")
+coordX <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "coordonneeLambertAbscisseEtablissement")
+coordY <- 
+	mydf |>
+	insee_utils_siret_sel(myindic = "adresseEtablissement",
+							 mycateg = "coordonneeLambertOrdonneeEtablissement")
+
+adresse1 <- paste(numvoie, typevoie, libvoie)
+adresse2 <- paste(codepostal, libcommune)
+
+vbs <- list(
+						bslib::value_box(
+											title = "Localisation",
+											# value = adresse1,
+											value = libcommune,
+											theme = "blue",
+											showcase = bsicons::bs_icon("mailbox"),
+											shiny::h5(adresse1),
+											shiny::h5(adresse2),
+											shiny::p(paste0("Coord X : ", coordX)),
+											shiny::p(paste0("Coord Y : ", coordY)),
+											shiny::p("Lambert")),
+						bslib::value_box(
+											title = "Autre",
+											value = "TODO",
+											theme = "yellow",
+											showcase = bsicons::bs_icon("question"))
+						)
+
+bslib::layout_column_wrap(
+  width = "250px",
+	height = "350px",
+  !!!vbs
+)
+
+```
+
+### 
+
+```{r}
+iconetatetab <- ifelse(etatetab == "A", "heart-pulse", "heartbreak")
+colorthemeetatetab <- ifelse(etatetab == "A", "success", "red")
+
+
+vbs2 <- list(
+						 bslib::value_box(
+											 title = "Effectif établissement",
+											 value = libtreffetab,
+											 theme = "purple",
+											 showcase = bsicons::bs_icon("person", size = "0.5em")),
+						 bslib::value_box(
+											 title = "Date de MAJ établissement",
+											 value = dateaafficher,
+											 theme = "pink",
+											 showcase = bsicons::bs_icon("calendar2-date", size = "0.5em")),
+						 bslib::value_box(
+											 title = "État établissement",
+											 value = libetatetab,
+											 theme = colorthemeetatetab,
+											 showcase = bsicons::bs_icon(iconetatetab, size = "0.5em"))
+)
+
+bslib::layout_column_wrap(
+  width = "250px",
+	height = "350px",
+  !!!vbs2
+)
+
+# card(
+#   card_header(
+#     class = "bg-dark",
+#     "A header"
+#   ),
+#   card_body(
+#     markdown("Some text with a [link](https://github.com)")
+#   )
+# )
+
+```
+
+
+

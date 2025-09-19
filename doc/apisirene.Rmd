@@ -1,0 +1,36 @@
+---
+title: "apisirene"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{apisirene}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+Le *package* `apisirene` permet de requêter sur l'API Sirene de l'Insee.
+
+Vous trouverez toute la documentation pour créer un compte (obligatoire) sur le [portail des api](https://portail-api.insee.fr/) à cette adresse :
+
+[https://www.sirene.fr/static-resources/documentation/Insee_API_publique_modalites_connexion.pdf](https://www.sirene.fr/static-resources/documentation/Insee_API_publique_modalites_connexion.pdf)
+
+## L'API Sirene
+
+La documentation technique de l'API se trouve [ici](https://www.sirene.fr/static-resources/documentation/sommaire_311.html) et [ici](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm)
+
+L'essentiel :
+
++ 4 types d'interrogations possibles : SIREN, SIRET, multicritères, liens de succession ;
+
++ Limite d'utilisation : 30 requêtes par minute ;
+
++ Nécessite la création d'un compte sur le portail des API.
+
+## Fonctionnement du *package*
+
+Le *package* repose sur l'utilisation de 3 familles de fonctions :
+
+- les fonctions de type `get` : insee_get_query, insee_siret_get, ...
+- les fonctions de type `parse` : insee_parse_siret_multi, ...
+- les fonctions de type `utils` : insee_howmany_echos, insee_siret_multi_make, ...
+
+Vous trouverez de plus amples détails et des exemples d'utilisation dans les autres vignettes.

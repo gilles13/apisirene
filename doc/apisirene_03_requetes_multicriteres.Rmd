@@ -1,0 +1,78 @@
+---
+title: "apisirene_03_requetes_multicriteres"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{apisirene_03_requetes_multicriteres}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Une requête multicritères, c'est quoi ?
+
+Selon la [documentation](https://www.sirene.fr/static-resources/documentation/multi_appel_311.html), une recherche multicritères est :
+
+> Il est possible via les deux services d’interrogation sur Siren et Siret d'effectuer une recherche libre permettant de combiner la totalité des variables présentes dans la réponse du service unitaire Siren (respectivement Siret).
+Cette recherche permet d’obtenir une liste des Siren (respectivement des Siret) qui répondent à des critères passés par un paramètre q (query) prenant la forme d'une requête, éventuellement complétée par les paramètres date, debut, nombre et curseur en fonction des besoins.
+
+Cette recherche multicritères permet donc d'obtenir des listes de Siren (ou Siret) sur la base d'une recherche visant à limiter les résultats selon des modalités choisies.
+
+Il est par exemple possible d'extraire la liste des établissements exerçant une [activité](https://www.insee.fr/fr/information/2406147) de boulangerie pâtisserie (code APE 10.71C) dans une commune ou un arrondissement municipal déterminé.
+
+Il est également possible d'obtenir la liste des unités légales d'une certaine [catégorie juridique](https://www.insee.fr/fr/information/2028129). Ces exemples sont présentés ci-dessous.
+
+## Sur quelles variables peut-on filtrer ?
+
+Toutes les variables, yc les indicatrices. Il y a quelques subtilités pour les champs de type date, comme mentionné [ici](https://www.sirene.fr/static-resources/documentation/multi_histo_non_histo_311.html).
+
+## Concrètement, comment ça marche ?
+
+Pour obtenir le résultat d'une requête multicritères, il faut utiliser les fonctions `insee_siret_multi_get` et `insee_siret_multi_make`.
+
+Pour cela, il faut passer une chaine de caractères à la fonction `insee_siret_multi_make` précisant les valeurs et les champs concernés. La structure de la chaine de caractère est de la forme "VARIABLE:VALEUR". Il est possible d'utiliser les opérateurs logiques `AND` et `OR` (respectivement avec les caractères & et |).
+
+Les noms des VARIABLES sont fixés : 
+
++ DEPCOM pour le lieu d'implantation de l'établissement ;
++ CJ pour la catégorie juridique ;
++ NAF pour l'activité principale exercée.
+
+Les autres variables ne sont pas (encore ?) prises en charge par le *package* (PR *welcome* !)
+
+## Des exemples ?
+
+Je souhaite obtenir la liste des boulangeries du 1er arrondissement municipal de Marseille.
+
+```{r}
+library("apisirene")
+
+insee_utils_siret_multi_make("DEPCOM:13201 & NAF:10.71C") |> 
+	insee_get_siret_multi()
+```
+
+Lorsque l'utilisateur souhaitera filtrer plus finement, il sera alors nécessaire d'utiliser les symboles de priorité.
+
+Si la recherche porte sur les établissements dont la catégorie juridique est entrepreneur individuel (code = 1000) ou SARL (code = 5499) et dont l'activité principale est soit boulangerie (code 10.71B et 10.71C), soit charcuterie (code 10.13B) dans le 1er, 5e et 8e arrondissement municipal de Marseille :
+
+```{r}
+insee_utils_siret_multi_make("(DEPCOM:13201 | DEPCOM:13205 | DEPCOM:13208) & (NAF:10.71B | NAF:10.71C | NAF:10.13B) & (CJ:1000 | CJ:5499)") |> 
+	insee_get_siret_multi() |> 
+	head(n = 15)
+```
+
+## Avertissements
+
+Le nombre d'établissements retournés par la requête peut-être relativement élevé. Si vous chercher tous les établissements dont l'activité est boulangerie patisserie en France, vous aurez des difficultés à obtenir une réponse, compte tenu des limites de l'API (30 appels par minutes).
+
+Il est possible de connaitre le nombre d'échos d'une requête mutlicritères ainsi (celle de l'exemple ci-dessus) :
+
+```{r}
+insee_utils_siret_multi_make("NAF:10.71C") |> 
+	insee_utils_howmany_echos()
+```

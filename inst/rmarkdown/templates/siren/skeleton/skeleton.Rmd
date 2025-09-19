@@ -1,0 +1,192 @@
+---
+title: "&#xa0;"
+output:
+  flexdashboard::flex_dashboard:
+    logo: /home/gilles/Documents/wip/api/logo1res.png
+    orientation: rows
+    theme:
+      bootswatch: pulse
+params:
+  mysiren: ""
+---
+  
+```{r config, include=FALSE}
+
+# ICONS NAME
+# https://icons.getbootstrap.com/
+
+# date: "`r Sys.Date()`"
+# title: "`r params$mysiren`"
+
+knitr::opts_chunk$set(echo = FALSE,
+                      warning=FALSE,
+                      message=FALSE,
+                      error = TRUE,
+                      fig.align = "center",
+                      out = '50%')
+
+if(.Platform$OS.type == "unix") {
+	library("gillespack")
+	library("apisirene")
+} else {
+	library("gillespack")
+	library("apisirene")
+	Sys.setenv(HTTPS_PROXY = "http://proxy-rie.http.insee.fr:8080")
+	Sys.setenv(HTTP_PROXY = "http://proxy-rie.http.insee.fr:8080")
+}
+
+library("dplyr")
+library("tidyr")
+library("bsicons")
+library("bslib")
+library("flexdashboard")
+
+identsiren <- params$mysiren
+identsiren <- gsub(" ", "", identsiren)
+
+mydt <- insee_get_siren(identsiren)
+
+# mydt <- readRDS(file = "~/Documents/wip/api/airbushelicosireninsee.RDS")
+
+```
+
+ACCUEIL
+=====================================================
+
+Column {.tabset}
+-------------------------------------------
+
+### Activité
+
+```{r}
+
+bslib::value_box(
+								 title = "Bonjour, vous avez demandé des informations sur le siren :",
+  value = identsiren,
+	theme = "blue",
+  showcase = bsicons::bs_icon("search"),
+	shiny::p("")
+)
+
+```
+
+### Logs
+
+```{r}
+print(getwd())
+print(Sys.info())
+loadedpack <- (.packages())
+print(loadedpack)
+```
+
+SIRENE
+=====================================================
+
+Row {data-height=500}
+-------------------------------------
+
+### Identification
+
+```{r}
+
+sirenUL <- 
+	mydt |> 
+	purrr::pluck("unitesLegales", "siren", .default = NA)
+
+categEntr <- 
+	mydt |> 
+	purrr::pluck("unitesLegales", "categorieEntreprise", .default = NA)
+
+denomUL <- 
+	mydt |> 
+	purrr::pluck("unitesLegales",
+							 "periodesUniteLegale",
+							 .default = NA) |> 
+	data.frame() |> 
+	dplyr::slice(1) |> 
+	dplyr::select(denominationUniteLegale) |> 
+	dplyr::pull()
+
+dateCrea <- 
+	mydt |> 
+	purrr::pluck("unitesLegales",
+							 "dateCreationUniteLegale",
+							 .default = NA) |> 
+	as.Date(format = "%Y-%m-%d")
+
+trEffectif <- 
+	mydt |> 
+	purrr::pluck("unitesLegales",
+							 "trancheEffectifsUniteLegale",
+							 .default = NA)
+
+libEffectif <- 
+	findmytreff(trEffectif)
+
+actiPpalUL <- 
+	mydt |> 
+	purrr::pluck("unitesLegales",
+							 "periodesUniteLegale",
+							 .default = NA) |> 
+	data.frame() |> 
+	dplyr::slice(1) |> 
+	dplyr::select(activitePrincipaleUniteLegale) |> 
+	dplyr::pull()
+
+libActiUL <- 
+	nafniv5 |> 
+	dplyr::filter(Code == actiPpalUL) |> 
+	dplyr::select(Libellé) |> 
+	dplyr::pull()
+
+catJuUL <- 
+	mydt |> 
+	purrr::pluck("unitesLegales",
+							 "periodesUniteLegale",
+							 .default = NA) |> 
+	data.frame() |> 
+	dplyr::slice(1) |> 
+	dplyr::select(categorieJuridiqueUniteLegale) |> 
+	dplyr::pull()
+
+libCatJuUL <- findmycj(catJuUL)
+
+
+vbs1 <- list(
+	bslib::value_box(
+									 title = "",
+									 value = denomUL,
+									 theme = "pink",
+									 showcase = bsicons::bs_icon("fingerprint"),
+									 shiny::h5(bsicons::bs_icon("activity"),
+														 paste0(actiPpalUL, " (", libActiUL, ")")),
+									 shiny::h6(paste0("SIREN : ", sirenUL)),
+									 shiny::h6(paste0("Date de création : ", dateCrea)),
+									 shiny::h6("Tranche d'effectif : ", libEffectif),
+									 shiny::h6(paste0("Catégorie juridique : ", catJuUL, " (", libCatJuUL, ")")),
+									 shiny::h6(paste0("Catégorie d'entreprise: ", categEntr)),
+									 shiny::p(""))
+						)
+
+bslib::layout_column_wrap(
+  width = "250px",
+	height = "350px",
+  !!!vbs1
+)
+
+```
+
+### Etablissements
+
+```{r}
+mydt |> 
+	purrr::pluck("unitesLegales", "periodesUniteLegale", .default = NA) |> 
+	data.frame() |> 
+	dplyr::rename(eaul=etatAdministratifUniteLegale) |> 
+	dplyr::rename(apul = activitePrincipaleUniteLegale) |> 
+	dplyr::select(-tidyselect::any_of(c(
+					"changementNomUsageUniteLegale"
+					))) |> 
+	dplyr::select(dateFin, dateDebut, eaul, apul, denominationUniteLegale) |> 
+	DT::datatable(rownames = FALSE)
+```

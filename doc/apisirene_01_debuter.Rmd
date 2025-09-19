@@ -1,0 +1,55 @@
+---
+title: "apisirene_01_debuter"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{apisirene_01_debuter}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+## Prérequis
+
+Avant toutes choses, pour utiliser le *package* `apisirene`, il faut se créer un compte sur le [portail des api](https://portail-api.insee.fr) de l'Insee.
+
+Une [documentation complète](https://www.sirene.fr/static-resources/documentation/Insee_API_publique_modalites_connexion.pdf) explique la procédure à cette adresse :
+
+[https://www.sirene.fr/static-resources/documentation/Insee_API_publique_modalites_connexion.pdf](https://www.sirene.fr/static-resources/documentation/Insee_API_publique_modalites_connexion.pdf)
+
+D'autres informations ici :
+
+[Evolution du portail des API](https://www.sirene.fr/static-resources/documentation/Evolutions_Sirene-Nouveau_portail.pdf)
+
+## Documentation de l'API
+
+[Présentation](https://www.sirene.fr/static-resources/documentation/presentation_311.htm)
+
+[https://www.sirene.fr/static-resources/documentation/sommaire_311.html](https://www.sirene.fr/static-resources/documentation/sommaire_311.html)
+
+[https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm](https://www.sirene.fr/static-resources/documentation/v_sommaire_311.htm)
+
+## Démarrer
+
+Une fois le compte créé, vous devez initier un service `sirene` 3.11, pour générer une clef d'API (API *keys*). Celle-ci vous permettra de requêter les données `Sirene`.
+
+## Paramétrer `R` pour utiliser le *package*
+
+Vous devez créer une variable d'environnement `INSEESIRENE_APIKEY`.
+
+Pour cela, vous avez 2 possibilités :
+
+1. Utiliser le *package* `usethis` et sa fonction `usethis::edit_r_environ()` ;
+
+2. Éditer manuellement votre fichier `.Renviron`, qui se situe généralement à la racine de votre répertoire utilisateur (*/home* sur `linux`, *Documents* sur `Windows`)
+
+Il faut saisir :
+
+`INSEESIRENE_APIKEY=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+
+Veillez à ne pas mettre de double quotes autour du code.
