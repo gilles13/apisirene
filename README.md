@@ -23,6 +23,6 @@ devtools::install_github('gilles13/apisirene')
 ## Required
 
 + `R` binary
-+ An account on [Insee API portal](https://portail-api.insee.fr/catalog/all)
++ An account on [Insee API portal](https://portail-api.insee.fr/catalog/all){target='_blank'}
 + Motivation
 
