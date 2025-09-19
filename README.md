@@ -1,0 +1,5 @@
+# apisirene
+
+An `R` *package* to easily request Sirene Insee API
+
+
