@@ -1,0 +1,9 @@
+pandoc: 3.1.12.1
+pkgdown: 2.1.3
+pkgdown_sha: ~
+articles:
+  apisirene_01_debuter: apisirene_01_debuter.html
+  apisirene_02_requetes_simples: apisirene_02_requetes_simples.html
+  apisirene_03_requetes_multicriteres: apisirene_03_requetes_multicriteres.html
+  apisirene: apisirene.html
+last_built: 2025-09-21T09:50Z

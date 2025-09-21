@@ -36,6 +36,7 @@ library("apisirene")
 "383 474 814" |> 
 	insee_get_siren() |> 
 	purrr::pluck("unitesLegales") |> 
+	dplyr::select(-periodesUniteLegale) |> 
 	knitr::kable()
 ```
 
