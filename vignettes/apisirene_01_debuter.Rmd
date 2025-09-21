@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 ## Prérequis
 
-Avant toutes choses, pour utiliser le *package* `apisirene`, il faut se créer un compte sur le [portail des api](https://portail-api.insee.fr) de l'Insee.
+Avant toutes choses, pour utiliser le *package* `apisirene`, il faut créer un compte sur le [portail des api](https://portail-api.insee.fr) de l'Insee.
 
 Une [documentation complète](https://www.sirene.fr/static-resources/documentation/Insee_API_publique_modalites_connexion.pdf) explique la procédure à cette adresse :
 
