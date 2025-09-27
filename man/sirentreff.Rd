@@ -10,11 +10,22 @@ A data frame with x rows and y variables:
 \item{code}{les codes de tranche d'effectif}
 \item{lib}{les libelles de tranche d'effectif}
 }
+
+A data frame with x rows and y variables:
+\describe{
+\item{code}{les codes de tranche d'effectif}
+\item{lib}{les libelles de tranche d'effectif}
+}
 }
 \usage{
 sirentreff
+
+sirentreff
 }
 \description{
+A dataset contenant les codes et libelle des tranches d'effectif
+Les variables sont les suivantes
+
 A dataset contenant les codes et libelle des tranches d'effectif
 Les variables sont les suivantes
 }

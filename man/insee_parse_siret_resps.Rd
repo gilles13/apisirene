@@ -7,14 +7,16 @@
 insee_parse_siret_resps(x)
 }
 \arguments{
-\item{x}{une réponse siret sur plusieurs etablissements}
+\item{x}{une reponse siret sur plusieurs etablissements}
 }
 \value{
-un data.frame parse d'une requête multi etab siret
+un data.frame parse d'une requete multi etab siret
 }
 \description{
-Parse le résultat d'une requête sur un ensemble de siret
+Parse le resultat d'une requete sur un ensemble de siret
 }
 \examples{
+\dontrun{
 insee_parse_siret_resps(objetnonparsedunerequetesiretmultietab)
+}
 }

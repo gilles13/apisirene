@@ -5,6 +5,8 @@ Authors@R:
     person("Gilles", "Fidani", , "gillesfidani@gmail.com", role = c("aut", "cre"))
 Description: Le package apisirene permet de requeter l'API Sirene de l'Insee, et telecharger des donnees sur les entreprises françaises.
 License: MIT + file LICENSE
+URL: https://github.com/gilles13/apisirene
+BugReports: https://github.com/gilles13/apisirene/issues
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2

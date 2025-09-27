@@ -16,5 +16,7 @@ un message d'avertissement si la variable n'est pas trouvee, sinon rien.
 Retourne la valeur de la variable d'environnement INSEESIRENE_APIKEY
 }
 \examples{
+\dontrun{
 insee_utils_sirene_varenv_check("INSEESIRENE_APIKEY")
+}
 }

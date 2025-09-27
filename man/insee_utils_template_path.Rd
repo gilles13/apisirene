@@ -8,6 +8,8 @@ insee_utils_template_path(pack = "apisirene", tempname = "siren")
 }
 \arguments{
 \item{pack}{le nom du package}
+
+\item{tempname}{le nom du template}
 }
 \value{
 une chaine de char
@@ -16,5 +18,7 @@ une chaine de char
 Retourne le chemin du template Rmarkdown pour dashboard siret
 }
 \examples{
+\dontrun{
 insee_utils_template_path(pack = "apisirene")
+}
 }

@@ -1,11 +1,13 @@
 # insee api sirene parse utils
 
 #' @title insee_parse_siret_resp
-#' @description Parse le résultat d'une requête sur UN numero siret
-#' @param x une réponse siret sur un etablissement
-#' @return un data.frame parse d'une requête mono etab siret
+#' @description Parse le resultat d'une requete sur UN numero siret
+#' @param x une reponse siret sur un etablissement
+#' @return un data.frame parse d'une requete mono etab siret
 #' @examples
+#' \dontrun{
 #' insee_parse_siret_resp(objetnonparsedunerequetesiretmonoetab)
+#' }
 #' @export
 insee_parse_siret_resp <- function(x) {
   res <- x |> 
@@ -31,11 +33,13 @@ insee_parse_siret_resp <- function(x) {
 }
 
 #' @title insee_parse_siret_resps
-#' @description Parse le résultat d'une requête sur un ensemble de siret
-#' @param x une réponse siret sur plusieurs etablissements
-#' @return un data.frame parse d'une requête multi etab siret
+#' @description Parse le resultat d'une requete sur un ensemble de siret
+#' @param x une reponse siret sur plusieurs etablissements
+#' @return un data.frame parse d'une requete multi etab siret
 #' @examples
+#' \dontrun{
 #' insee_parse_siret_resps(objetnonparsedunerequetesiretmultietab)
+#' }
 # #' @export
 insee_parse_siret_resps <- function(x) {
   res <- x |> 
@@ -61,11 +65,13 @@ insee_parse_siret_resps <- function(x) {
 }
 
 #' @title insee_parse_siren_resp
-#' @description Parse le résultat d'une requête siren mono UL
-#' @param x une réponse siren mono unite legale
-#' @return un data.frame parse d'une requête siren mono unite legale
+#' @description Parse le resultat d'une requete siren mono UL
+#' @param x une reponse siren mono unite legale
+#' @return un data.frame parse d'une requete siren mono unite legale
 #' @examples
+#' \dontrun{
 #' insee_parse_siren_resp(objetnonparsedunerequetesiren)
+#' }
 #' @export
 insee_parse_siren_resp <- function(x) {
   res <- x |> 
@@ -97,11 +103,13 @@ insee_parse_siren_resp <- function(x) {
 }
 
 #' @title insee_parse_siret_multi
-#' @description Parse le résultat d'une requête multicriteres de siret
-#' @param x une réponse siret multicriteres
-#' @return un data.frame parse d'une requête multicriteres sur des etab siret
+#' @description Parse le resultat d'une requete multicriteres de siret
+#' @param x une reponse siret multicriteres
+#' @return un data.frame parse d'une requete multicriteres sur des etab siret
 #' @examples
+#' \dontrun{
 #' insee_parse_siret_multi(objetnonparsedunerequetesiretmulticriteres)
+#' }
 #' @export
 insee_parse_siret_multi <- function(x) {
 	res <- 
@@ -236,12 +244,12 @@ insee_parse_siret_multi <- function(x) {
 		if(exists("nafniv5")) {
 			 res <- res |>
 				 dplyr::left_join(y = nafniv5, by = c("ulCodeAPE" = "Code")) |> 
-				 dplyr::rename(libAPE = Libellé)
+				 dplyr::rename(libAPE = Libelle)
 		}
 		if(exists("cjniv3")) {
 			 res <- res |>
 				 dplyr::left_join(y = cjniv3, by = c("ulCJ" = "Code")) |> 
-				 dplyr::rename(libCJ = Libellé)
+				 dplyr::rename(libCJ = Libelle)
 		}
 		return(res)
 }

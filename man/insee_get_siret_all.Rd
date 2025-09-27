@@ -16,5 +16,7 @@ une liste non parsee retournee par l'API
 Retourne le resultat (non parse) de la requete sur numero siret
 }
 \examples{
+\dontrun{
 insee_get_siret_all("40188740100040")
+}
 }

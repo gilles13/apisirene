@@ -20,5 +20,7 @@ une chaine de caractere : la valeur de l'indicateur
 Retourne les informations du data.frame parse
 }
 \examples{
+\dontrun{
 insee_utils_siret_sel(mydf, mycateg = "activitePrincipaleUniteLegale")
+}
 }

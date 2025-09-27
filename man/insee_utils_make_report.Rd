@@ -7,14 +7,16 @@
 insee_utils_make_report(siren)
 }
 \arguments{
-\item{siret}{une chaine de caractere pour l'etablissement a consulter}
+\item{siren}{une chaine de caractere pour l'etablissement a consulter}
 }
 \value{
 un fichier html, affiche dans le browser
 }
 \description{
-Affiche une page html synthétisant de l'information de base sur un etablissement
+Affiche une page html synthetisant de l'information de base sur un etablissement
 }
 \examples{
+\dontrun{
 insee_utils_make_report(siret = "40188740100040")
+}
 }

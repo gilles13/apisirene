@@ -13,5 +13,7 @@ un message d'information.
 Retourne un message d'aide
 }
 \examples{
+\dontrun{
 insee_utils_sirene_aide()
+}
 }

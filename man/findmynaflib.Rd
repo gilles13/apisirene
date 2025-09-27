@@ -16,5 +16,7 @@ Une chaine de caracteres.
 Retourne le libelle d'un code naf 5 caracteres.
 }
 \examples{
+\dontrun{
 findmynaflib("01.21Z")
+}
 }

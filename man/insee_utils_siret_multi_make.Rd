@@ -16,5 +16,7 @@ une chaine de caractere
 Retourne l'url formatee d'une requete multicriteres
 }
 \examples{
+\dontrun{
 insee_utils_siret_multi_make("DEPCOM:132* & NAF:10.71C")
+}
 }

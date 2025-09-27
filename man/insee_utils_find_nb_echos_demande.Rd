@@ -16,5 +16,7 @@ une chaine de caractere : le nombre d'echos demande par la requete
 Retourne le nombre d'echos demande dans la requete
 }
 \examples{
+\dontrun{
 insee_utils_find_nb_echos_demande("https://api.insee.fr/api-sirene/3.11/siret?q=codeCommuneEtablissement\%3A13*\%20AND\%20activitePrincipaleUniteLegale\%3A10.71*&nombre=1000&curseur=*")
+}
 }

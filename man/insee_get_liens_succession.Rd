@@ -7,7 +7,7 @@
 insee_get_liens_succession(type_lien = "S", etab = NULL)
 }
 \arguments{
-\item{type_lien}{le type de lien recherché : predecesseur (P) ou successeur (S)}
+\item{type_lien}{le type de lien recherche : predecesseur (P) ou successeur (S)}
 
 \item{etab}{le numero siret de l'etablissement dont on cherche le lien de succession}
 }
@@ -18,5 +18,7 @@ un data.frame des donnees renvoyees par l'API Sirene
 Retourne le resultat de la requete liens de succession
 }
 \examples{
+\dontrun{
 insee_get_liens_succession(type_lien = "S", etab = "123 456 789 00012")
+}
 }

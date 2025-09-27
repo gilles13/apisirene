@@ -19,5 +19,7 @@ Retourne la valeur de la variable d'environnement INSEESIRENE_APIKEY
 Pour l'instant, la valeur de la variable d'environnement est fixee a INSEESIRENE_APIKEY.
 }
 \examples{
+\dontrun{
 get_api_key("INSEESIRENE_APIKEY")
+}
 }

@@ -20,5 +20,7 @@ une chaine de char
 Retourne la chaine concatenee d'une requete multicriteres
 }
 \examples{
+\dontrun{
 insee_utils_concat_multi("https://api.insee.fr/api-sirene/3.11/siret?q=", multi = "")
+}
 }

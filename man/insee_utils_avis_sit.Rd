@@ -8,6 +8,8 @@ insee_utils_avis_sit(siret, url = FALSE)
 }
 \arguments{
 \item{siret}{le siret a interroger}
+
+\item{url}{if FALSE (default) return file, else return link to file}
 }
 \value{
 un avis de situation sirene
@@ -16,5 +18,7 @@ un avis de situation sirene
 Renvoie un avis de situation a partir d'un siret
 }
 \examples{
+\dontrun{
 insee_utils_avis_sit(siret = "12345678900001")
+}
 }

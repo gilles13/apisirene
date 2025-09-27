@@ -16,5 +16,7 @@ une chaine de caractere : le nombre de periodes d'un etablissement
 Retourne le nombre de periodes disponibles pour un etablissement
 }
 \examples{
+\dontrun{
 insee_utils_find_nb_periodes(mydf)
+}
 }

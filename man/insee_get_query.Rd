@@ -8,6 +8,8 @@ insee_get_query(url, simp = TRUE)
 }
 \arguments{
 \item{url}{l'url a interroger}
+
+\item{simp}{if TRUE (default), simplifyVector}
 }
 \value{
 un data.frame des donnees renvoyees par l'API Sirene
@@ -16,5 +18,7 @@ un data.frame des donnees renvoyees par l'API Sirene
 Retourne le resultat de la requete
 }
 \examples{
+\dontrun{
 insee_get_query("https://api.insee.fr/api-sirene/3.11/siret/40188740100040")
+}
 }

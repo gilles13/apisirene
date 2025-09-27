@@ -4,17 +4,21 @@
 \alias{insee_get_siret_multi}
 \title{insee_get_siret_multi}
 \usage{
-insee_get_siret_multi(url)
+insee_get_siret_multi(url, simp = TRUE)
 }
 \arguments{
-\item{url}{l'url multicritères a adresser a l'API}
+\item{url}{l'url multicriteres a adresser a l'API}
+
+\item{simp}{if TRUE (default) simplifyVector}
 }
 \value{
-un data.frame parse du resultat de la requete multicritères
+un data.frame parse du resultat de la requete multicriteres
 }
 \description{
-Retourne le resultat de la requete multicriètre sur numeros siret
+Retourne le resultat de la requete multicriteres sur numeros siret
 }
 \examples{
+\dontrun{
 insee_get_siret_multi("https://api.insee.fr/api-sirene/3.11/siret?q=codeCommuneEtablissement\%3A13*\%20AND\%20activitePrincipaleUniteLegale\%3A10.71*&nombre=1000&curseur=*")
+}
 }

@@ -7,14 +7,16 @@
 insee_parse_siren_resp(x)
 }
 \arguments{
-\item{x}{une réponse siren mono unite legale}
+\item{x}{une reponse siren mono unite legale}
 }
 \value{
-un data.frame parse d'une requête siren mono unite legale
+un data.frame parse d'une requete siren mono unite legale
 }
 \description{
-Parse le résultat d'une requête siren mono UL
+Parse le resultat d'une requete siren mono UL
 }
 \examples{
+\dontrun{
 insee_parse_siren_resp(objetnonparsedunerequetesiren)
+}
 }

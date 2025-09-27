@@ -16,5 +16,7 @@ une chaine de caractere : le code nic du siege de l'unite legale
 Renvoie le nic du siege a partir d'une requete sur siren
 }
 \examples{
+\dontrun{
 insee_utils_get_nic(x = marequetesiren)
+}
 }

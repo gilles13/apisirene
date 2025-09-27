@@ -18,5 +18,7 @@ un data.frame parse du resultat de la requete sur numero siren
 Retourne le resultat de la requete sur un numero siren
 }
 \examples{
+\dontrun{
 insee_get_siren("monnumerosiren")
+}
 }

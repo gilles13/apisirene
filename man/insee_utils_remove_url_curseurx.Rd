@@ -16,5 +16,7 @@ une chaine de caractere (l'url) sans le curseur
 Retourne une url sans le fragment curseur=*
 }
 \examples{
+\dontrun{
 insee_utils_remove_url_cruseurx("https://mapetiteurl?curseur=*")
+}
 }

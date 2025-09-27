@@ -16,5 +16,7 @@ Un tibble ou rien si pas d'echo
 Retourne le libelle d'un code tranche d'effectif
 }
 \examples{
+\dontrun{
 findmytreff("42")
+}
 }

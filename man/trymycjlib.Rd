@@ -13,5 +13,7 @@ Un tibble ou rien si pas d'echo
 Retourne le code parmi un libelle de categorie juridique saisi par l'utilisateur.
 }
 \examples{
+\dontrun{
 trymycjlib()
+}
 }

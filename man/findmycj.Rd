@@ -16,5 +16,7 @@ Une chaine de caracteres.
 Retourne le libelle d'un code CJ de niveau 3.
 }
 \examples{
+\dontrun{
 findmycj("5599")
+}
 }

@@ -13,5 +13,7 @@ Une chaine de caracteres ou rien si pas d'echos
 Retourne le code parmi un libelle saisi par l'utilisateur.
 }
 \examples{
+\dontrun{
 trymynaflib()
+}
 }

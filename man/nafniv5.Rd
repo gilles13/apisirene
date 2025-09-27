@@ -8,7 +8,7 @@
 A data frame with x rows and y variables:
 \describe{
 \item{Code}{les codes naf de niveau 5}
-\item{Libellé}{les libelles naf de niveau 5}
+\item{Libelle}{les libelles naf de niveau 5}
 }
 }
 \usage{

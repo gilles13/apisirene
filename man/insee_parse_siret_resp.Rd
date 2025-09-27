@@ -7,14 +7,16 @@
 insee_parse_siret_resp(x)
 }
 \arguments{
-\item{x}{une réponse siret sur un etablissement}
+\item{x}{une reponse siret sur un etablissement}
 }
 \value{
-un data.frame parse d'une requête mono etab siret
+un data.frame parse d'une requete mono etab siret
 }
 \description{
-Parse le résultat d'une requête sur UN numero siret
+Parse le resultat d'une requete sur UN numero siret
 }
 \examples{
+\dontrun{
 insee_parse_siret_resp(objetnonparsedunerequetesiretmonoetab)
+}
 }

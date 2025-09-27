@@ -6,7 +6,7 @@
 #' @format A data frame with x rows and y variables:
 #' \describe{
 #'   \item{Code}{les codes naf de niveau 5}
-#'   \item{Libellé}{les libelles naf de niveau 5}
+#'   \item{Libelle}{les libelles naf de niveau 5}
 #' }
 "nafniv5"
 
@@ -18,10 +18,9 @@
 #' @format A data frame with x rows and y variables:
 #' \describe{
 #'   \item{Code}{les codes des CJ niv3}
-#'   \item{Libellé}{les libelles des CJ niv3}
+#'   \item{Libelle}{les libelles des CJ niv3}
 #' }
 "cjniv3"
-
 
 #' Codes et libelle des tranches d'effectif de l'API Sirene
 #'
@@ -34,3 +33,16 @@
 #'   \item{lib}{les libelles de tranche d'effectif}
 #' }
 "sirentreff"
+
+#' Codes et libelle des tranches d'effectif de l'API Sirene
+#'
+#' A dataset contenant les codes et libelle des tranches d'effectif
+#'  Les variables sont les suivantes
+#'
+#' @format A data frame with x rows and y variables:
+#' \describe{
+#'   \item{code}{les codes de tranche d'effectif}
+#'   \item{lib}{les libelles de tranche d'effectif}
+#' }
+"sirentreff"
+

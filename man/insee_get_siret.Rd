@@ -8,6 +8,8 @@ insee_get_siret(siret = NULL, simp = TRUE)
 }
 \arguments{
 \item{siret}{le code siret a interroger}
+
+\item{simp}{if TRUE (default), simplifyVector}
 }
 \value{
 un data.frame des donnees renvoyees par l'API Sirene
@@ -16,5 +18,7 @@ un data.frame des donnees renvoyees par l'API Sirene
 Retourne le resultat parse de la requete sur numero siret
 }
 \examples{
+\dontrun{
 insee_get_siret(siret = "40188740100040")
+}
 }
