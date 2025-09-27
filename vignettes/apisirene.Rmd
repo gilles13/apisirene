@@ -16,11 +16,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r, out.width="50%"}
+```{r, out.width="20%"}
 knitr::include_graphics(path = "../man/figures/logo_apisirene_center.png")
 ```
 
-Le *package* `apisirene` permet de requêter sur l'API Sirene de l'Insee.
+Le *package* `apisirene` permet de requêter sur l'API Sirene de l'[Insee](https://insee.fr){target="_blank"}.
 
 Vous trouverez toute la documentation pour créer un compte (obligatoire) sur le [portail des api](https://portail-api.insee.fr/) à cette adresse :
 

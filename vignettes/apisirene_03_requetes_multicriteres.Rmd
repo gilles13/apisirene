@@ -52,8 +52,8 @@ Je souhaite obtenir la liste des boulangeries du 1er arrondissement municipal de
 ```{r}
 library("apisirene")
 
-# insee_utils_siret_multi_make("DEPCOM:13201 & NAF:10.71C") |> 
-# 	insee_get_siret_multi()
+insee_utils_siret_multi_make("DEPCOM:13201 & NAF:10.71C") |> 
+	insee_get_siret_multi()
 ```
 
 Lorsque l'utilisateur souhaitera filtrer plus finement, il sera alors nécessaire d'utiliser les symboles de priorité.
@@ -61,16 +61,16 @@ Lorsque l'utilisateur souhaitera filtrer plus finement, il sera alors nécessair
 Si la recherche porte sur les établissements dont la catégorie juridique est entrepreneur individuel (code = 1000) ou SARL (code = 5499) et dont l'activité principale est soit boulangerie (code 10.71B et 10.71C), soit charcuterie (code 10.13B) dans le 1er, 5e et 8e arrondissement municipal de Marseille :
 
 ```{r}
-# insee_utils_siret_multi_make("(DEPCOM:13201 | DEPCOM:13205 | DEPCOM:13208) & (NAF:10.71B | NAF:10.71C | NAF:10.13B) & (CJ:1000 | CJ:5499)") |> 
-# 	insee_get_siret_multi() |> 
-# 	head(n = 15)
+insee_utils_siret_multi_make("(DEPCOM:13201 | DEPCOM:13205 | DEPCOM:13208) & (NAF:10.71B | NAF:10.71C | NAF:10.13B) & (CJ:1000 | CJ:5499)") |> 
+	insee_get_siret_multi() |> 
+	head(n = 15)
 ```
 
 ## Avertissements
 
 Le nombre d'établissements retournés par la requête peut-être relativement élevé. Si vous chercher tous les établissements dont l'activité est boulangerie patisserie en France, vous aurez des difficultés à obtenir une réponse, compte tenu des limites de l'API (30 appels par minutes).
 
-Il est possible de connaitre le nombre d'échos d'une requête mutlicritères ainsi (celle de l'exemple ci-dessus) :
+Il est possible de connaitre le nombre d'échos d'une requête mutlicritères ainsi :
 
 ```{r}
 insee_utils_siret_multi_make("NAF:10.71C") |> 

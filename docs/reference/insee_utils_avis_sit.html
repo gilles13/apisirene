@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">apisirene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1</span>
       </span>
     </div>
 
@@ -47,7 +47,13 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/gilles13/apisirene/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -57,7 +63,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>insee_utils_avis_sit</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/gilles13/apisirene/blob/HEAD/R/apisireneutils.R" class="external-link"><code>R/apisireneutils.R</code></a></small>
     <div class="hidden name"><code>insee_utils_avis_sit.Rd</code></div>
     </div>
 
@@ -76,6 +82,10 @@
 <dl><dt id="arg-siret">siret<a class="anchor" aria-label="anchor" href="#arg-siret"></a></dt>
 <dd><p>le siret a interroger</p></dd>
 
+
+<dt id="arg-url">url<a class="anchor" aria-label="anchor" href="#arg-url"></a></dt>
+<dd><p>if FALSE (default) return file, else return link to file</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -84,8 +94,9 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">insee_utils_avis_sit</span><span class="op">(</span>siret <span class="op">=</span> <span class="st">"12345678900001"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in httr2::req_perform(httr2::req_headers(httr2::request(urlTot),     Accept = "application/pdf")):</span> HTTP 500 Internal Server Error.</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="fu">insee_utils_avis_sit</span><span class="op">(</span>siret <span class="op">=</span> <span class="st">"12345678900001"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>

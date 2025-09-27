@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">apisirene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1</span>
       </span>
     </div>
 
@@ -66,7 +66,14 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/gilles13/apisirene/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -82,7 +89,7 @@
       <h1 data-toc-skip>apisirene_03_requetes_multicriteres</h1>
             
       
-
+      <small class="dont-index">Source: <a href="https://github.com/gilles13/apisirene/blob/HEAD/vignettes/apisirene_03_requetes_multicriteres.Rmd" class="external-link"><code>vignettes/apisirene_03_requetes_multicriteres.Rmd</code></a></small>
       <div class="hidden name"><code>apisirene_03_requetes_multicriteres.Rmd</code></div>
 
     </div>
@@ -148,28 +155,28 @@ concernés. La structure de la chaine de caractère est de la forme
 <p>Je souhaite obtenir la liste des boulangeries du 1er arrondissement
 municipal de Marseille.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st">"apisirene"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="st"><a href="https://github.com/gilles13/apisirene" class="external-link">"apisirene"</a></span><span class="op">)</span></span>
 <span><span class="co">#&gt; Si c'est votre premiere utilisation du package, il est recommande de lire les vignettes, ou de lancer la commande insee_sirene_aide()</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/insee_utils_siret_multi_make.html">insee_utils_siret_multi_make</a></span><span class="op">(</span><span class="st">"DEPCOM:13201 &amp; NAF:10.71C"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="../reference/insee_get_siret_multi.html">insee_get_siret_multi</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Votre requete concerne 180 entreprises ou etablissements</span></span>
-<span><span class="co">#&gt;  Debut de traitement: 2025-09-21 16:30:59.400741</span></span>
-<span><span class="co">#&gt; 2025-09-21 16:31:07.527281</span></span>
-<span><span class="co">#&gt; Fin de traitement : 2025-09-21 16:31:07.5276</span></span>
+<span><span class="co">#&gt;  Debut de traitement: 2025-09-27 14:34:19.256816</span></span>
+<span><span class="co">#&gt; 2025-09-27 14:34:30.453244</span></span>
+<span><span class="co">#&gt; Fin de traitement : 2025-09-27 14:34:30.45353</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 180 × 37</span></span></span>
 <span><span class="co">#&gt;    gSiren    gNic  gSiret     gStatutDiffEtb gDateCreaEtb gTreffEtb gAnneeEffEtb</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 057812018 00026 057812018… <span style="color: #BB0000;">NA</span>             1992-05-08   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 057812018 00026 057812018… <span style="color: #BB0000;">NA</span>             1992-05-08   NN        <span style="color: #BB0000;">NA</span>          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 060804051 00013 060804051… <span style="color: #BB0000;">NA</span>             1960-01-01   00        2022        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 069802361 00050 069802361… <span style="color: #BB0000;">NA</span>             1982-06-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 073712630 00018 073712630… <span style="color: #BB0000;">NA</span>             1965-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 307188946 00015 307188946… <span style="color: #BB0000;">NA</span>             1900-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 307188946 00031 307188946… <span style="color: #BB0000;">NA</span>             1993-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 318151727 00019 318151727… <span style="color: #BB0000;">NA</span>             1980-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 319682563 00055 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 319682563 00063 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 322322827 00013 322322827… <span style="color: #BB0000;">NA</span>             1980-08-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 069802361 00050 069802361… <span style="color: #BB0000;">NA</span>             1982-06-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 073712630 00018 073712630… <span style="color: #BB0000;">NA</span>             1965-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 307188946 00015 307188946… <span style="color: #BB0000;">NA</span>             1900-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 307188946 00031 307188946… <span style="color: #BB0000;">NA</span>             1993-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 318151727 00019 318151727… <span style="color: #BB0000;">NA</span>             1980-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 319682563 00055 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 319682563 00063 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 322322827 00013 322322827… <span style="color: #BB0000;">NA</span>             1980-08-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 170 more rows</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 30 more variables: gApeRmEtb &lt;chr&gt;, gDateDernTraitEtb &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   gEtbSiege &lt;lgl&gt;, gNbPeriodEtb &lt;int&gt;, ulEtatAdm &lt;chr&gt;, ulDenom &lt;chr&gt;,</span></span></span>
@@ -188,28 +195,28 @@ arrondissement municipal de Marseille :</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/insee_utils_siret_multi_make.html">insee_utils_siret_multi_make</a></span><span class="op">(</span><span class="st">"(DEPCOM:13201 | DEPCOM:13205 | DEPCOM:13208) &amp; (NAF:10.71B | NAF:10.71C | NAF:10.13B) &amp; (CJ:1000 | CJ:5499)"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="../reference/insee_get_siret_multi.html">insee_get_siret_multi</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span>n <span class="op">=</span> <span class="fl">15</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Votre requete concerne 355 entreprises ou etablissements</span></span>
-<span><span class="co">#&gt;  Debut de traitement: 2025-09-21 16:31:08.308619</span></span>
-<span><span class="co">#&gt; 2025-09-21 16:31:12.271217</span></span>
-<span><span class="co">#&gt; Fin de traitement : 2025-09-21 16:31:12.271543</span></span>
+<span><span class="co">#&gt; Votre requete concerne 356 entreprises ou etablissements</span></span>
+<span><span class="co">#&gt;  Debut de traitement: 2025-09-27 14:34:31.233648</span></span>
+<span><span class="co">#&gt; 2025-09-27 14:34:38.184417</span></span>
+<span><span class="co">#&gt; Fin de traitement : 2025-09-27 14:34:38.184736</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 15 × 37</span></span></span>
 <span><span class="co">#&gt;    gSiren    gNic  gSiret     gStatutDiffEtb gDateCreaEtb gTreffEtb gAnneeEffEtb</span></span>
 <span><span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;lgl&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>       </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 057812018 00026 057812018… <span style="color: #BB0000;">NA</span>             1992-05-08   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> 057812018 00026 057812018… <span style="color: #BB0000;">NA</span>             1992-05-08   NN        <span style="color: #BB0000;">NA</span>          </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> 060804051 00013 060804051… <span style="color: #BB0000;">NA</span>             1960-01-01   00        2022        </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 064722812 00019 064722812… <span style="color: #BB0000;">NA</span>             1900-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 064722812 00027 064722812… <span style="color: #BB0000;">NA</span>             1900-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 069802361 00050 069802361… <span style="color: #BB0000;">NA</span>             1982-06-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 073712630 00018 073712630… <span style="color: #BB0000;">NA</span>             1965-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 307188946 00015 307188946… <span style="color: #BB0000;">NA</span>             1900-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 307188946 00031 307188946… <span style="color: #BB0000;">NA</span>             1993-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 307489997 00014 307489997… <span style="color: #BB0000;">NA</span>             1964-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 314207507 00026 314207507… <span style="color: #BB0000;">NA</span>             1986-07-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 318151727 00019 318151727… <span style="color: #BB0000;">NA</span>             1980-01-01   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 318634243 00055 318634243… <span style="color: #BB0000;">NA</span>             1996-08-26   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 318634243 00063 318634243… <span style="color: #BB0000;">NA</span>             1999-08-10   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 319682563 00055 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> 319682563 00063 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> 064722812 00019 064722812… <span style="color: #BB0000;">NA</span>             1900-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> 064722812 00027 064722812… <span style="color: #BB0000;">NA</span>             1900-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> 069802361 00050 069802361… <span style="color: #BB0000;">NA</span>             1982-06-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> 073712630 00018 073712630… <span style="color: #BB0000;">NA</span>             1965-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> 307188946 00015 307188946… <span style="color: #BB0000;">NA</span>             1900-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> 307188946 00031 307188946… <span style="color: #BB0000;">NA</span>             1993-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> 307489997 00014 307489997… <span style="color: #BB0000;">NA</span>             1964-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> 314207507 00026 314207507… <span style="color: #BB0000;">NA</span>             1986-07-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">11</span> 318151727 00019 318151727… <span style="color: #BB0000;">NA</span>             1980-01-01   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">12</span> 318634243 00055 318634243… <span style="color: #BB0000;">NA</span>             1996-08-26   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">13</span> 318634243 00063 318634243… <span style="color: #BB0000;">NA</span>             1999-08-10   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">14</span> 319682563 00055 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   NN        <span style="color: #BB0000;">NA</span>          </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">15</span> 319682563 00063 319682563… <span style="color: #BB0000;">NA</span>             1990-02-19   NN        <span style="color: #BB0000;">NA</span>          </span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># ℹ 30 more variables: gApeRmEtb &lt;chr&gt;, gDateDernTraitEtb &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   gEtbSiege &lt;lgl&gt;, gNbPeriodEtb &lt;int&gt;, ulEtatAdm &lt;chr&gt;, ulDenom &lt;chr&gt;,</span></span></span>
 <span><span class="co">#&gt; <span style="color: #949494;">#   ulSigle &lt;chr&gt;, ulDenomUsuelle &lt;chr&gt;, ulCodeAPE &lt;chr&gt;, ulCJ &lt;chr&gt;,</span></span></span>
@@ -227,11 +234,11 @@ l’activité est boulangerie patisserie en France, vous aurez des
 difficultés à obtenir une réponse, compte tenu des limites de l’API (30
 appels par minutes).</p>
 <p>Il est possible de connaitre le nombre d’échos d’une requête
-mutlicritères ainsi (celle de l’exemple ci-dessus) :</p>
+mutlicritères ainsi :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/insee_utils_siret_multi_make.html">insee_utils_siret_multi_make</a></span><span class="op">(</span><span class="st">"NAF:10.71C"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>    <span class="fu"><a href="../reference/insee_utils_howmany_echos.html">insee_utils_howmany_echos</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] 113033</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 113107</span></span></code></pre></div>
 </div>
   </div>
 

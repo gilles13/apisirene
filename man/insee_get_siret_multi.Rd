@@ -4,12 +4,10 @@
 \alias{insee_get_siret_multi}
 \title{insee_get_siret_multi}
 \usage{
-insee_get_siret_multi(url, simp = TRUE)
+insee_get_siret_multi(url)
 }
 \arguments{
 \item{url}{l'url multicriteres a adresser a l'API}
-
-\item{simp}{if TRUE (default) simplifyVector}
 }
 \value{
 un data.frame parse du resultat de la requete multicriteres

@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">apisirene</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1</span>
       </span>
     </div>
 
@@ -47,7 +47,13 @@
 <li>
   <a href="../news/index.html">Changelog</a>
 </li>
-      </ul><ul class="nav navbar-nav navbar-right"></ul></div><!--/.nav-collapse -->
+      </ul><ul class="nav navbar-nav navbar-right"><li>
+  <a href="https://github.com/gilles13/apisirene/" class="external-link">
+    <span class="fab fa-github fa-lg"></span>
+
+  </a>
+</li>
+      </ul></div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
@@ -57,7 +63,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>insee_get_query</h1>
-
+    <small class="dont-index">Source: <a href="https://github.com/gilles13/apisirene/blob/HEAD/R/apisireneget.R" class="external-link"><code>R/apisireneget.R</code></a></small>
     <div class="hidden name"><code>insee_get_query.Rd</code></div>
     </div>
 
@@ -76,6 +82,10 @@
 <dl><dt id="arg-url">url<a class="anchor" aria-label="anchor" href="#arg-url"></a></dt>
 <dd><p>l'url a interroger</p></dd>
 
+
+<dt id="arg-simp">simp<a class="anchor" aria-label="anchor" href="#arg-simp"></a></dt>
+<dd><p>if TRUE (default), simplifyVector</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
@@ -84,276 +94,9 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">insee_get_query</span><span class="op">(</span><span class="st">"https://api.insee.fr/api-sirene/3.11/siret/40188740100040"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> L'url est : https://api.insee.fr/api-sirene/3.11/siret/40188740100040</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $header</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $header$statut</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 200</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $header$message</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ok"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$siren</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "401887401"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$nic</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "00040"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$siret</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "40188740100040"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$statutDiffusionEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "O"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$dateCreationEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2005-06-02"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$trancheEffectifsEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "32"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$anneeEffectifsEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$activitePrincipaleRegistreMetiersEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$dateDernierTraitementEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-08-08T11:01:07.711"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$etablissementSiege</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$nombrePeriodesEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$etatAdministratifUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "A"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$statutDiffusionUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "O"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$dateCreationUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "1995-07-27"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$categorieJuridiqueUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "5699"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$denominationUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OLYMPIQUE DE MARSEILLE"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$sigleUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$denominationUsuelle1UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "OLYMPIQUE DE MARSEILLE-OM-DROIT AU BUT"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$denominationUsuelle2UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$denominationUsuelle3UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$sexeUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$nomUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$nomUsageUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$prenom1UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$prenom2UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$prenom3UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$prenom4UniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$prenomUsuelUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$pseudonymeUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$activitePrincipaleUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "93.12Z"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$nomenclatureActivitePrincipaleUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "NAFRev2"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$identifiantAssociationUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$economieSocialeSolidaireUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "N"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$societeMissionUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$caractereEmployeurUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$trancheEffectifsUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "32"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$anneeEffectifsUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$nicSiegeUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "00040"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$dateDernierTraitementUniteLegale</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2025-08-08T11:01:07.700"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$categorieEntreprise</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "ETI"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$uniteLegale$anneeCategorieEntreprise</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "2022"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$complementAdresseEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "CTRE ENTRAINEMENT ROBERT LOUIS DREYFUS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$numeroVoieEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "33"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$indiceRepetitionEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$dernierNumeroVoieEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$indiceRepetitionDernierNumeroVoieEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$typeVoieEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "TRAVERSE"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$libelleVoieEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "DE LA MARTINE"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$codePostalEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "13012"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$libelleCommuneEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "MARSEILLE"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$libelleCommuneEtrangerEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$distributionSpecialeEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$codeCommuneEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "13212"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$codeCedexEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$libelleCedexEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$codePaysEtrangerEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$libellePaysEtrangerEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$identifiantAdresseEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "13212fc5i6j_B"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$coordonneeLambertAbscisseEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "900441.143537245"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresseEtablissement$coordonneeLambertOrdonneeEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "6247727.890981362"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$complementAdresse2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$numeroVoie2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$indiceRepetition2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$typeVoie2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$libelleVoie2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$codePostal2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$libelleCommune2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$libelleCommuneEtranger2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$distributionSpeciale2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$codeCommune2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$codeCedex2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$libelleCedex2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$codePaysEtranger2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$adresse2Etablissement$libellePaysEtranger2Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $etablissement$periodesEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      dateFin  dateDebut etatAdministratifEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1       &lt;NA&gt; 2019-07-16                              A</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2 2019-07-15 2008-01-01                              A</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3 2007-12-31 2005-06-02                              A</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   changementEtatAdministratifEtablissement enseigne1Etablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                    FALSE                     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                    FALSE                     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                    FALSE                     NA</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   enseigne2Etablissement enseigne3Etablissement changementEnseigneEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                     NA                     NA                           FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                     NA                     NA                           FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                     NA                     NA                           FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   denominationUsuelleEtablissement changementDenominationUsuelleEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                               NA                                      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                               NA                                      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                               NA                                      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   activitePrincipaleEtablissement nomenclatureActivitePrincipaleEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                          93.12Z                                     NAFRev2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                          93.19Z                                     NAFRev2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                           92.6C                                     NAFRev1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   changementActivitePrincipaleEtablissement caractereEmployeurEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                      TRUE                               O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                      TRUE                               O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                     FALSE                               O</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   changementCaractereEmployeurEtablissement</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1                                     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2                                     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3                                     FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> <span class="co"># \dontrun{</span></span></span>
+<span class="r-in"><span><span class="fu">insee_get_query</span><span class="op">(</span><span class="st">"https://api.insee.fr/api-sirene/3.11/siret/40188740100040"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">}</span> <span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
   </div>

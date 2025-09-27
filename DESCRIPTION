@@ -1,6 +1,6 @@
 Package: apisirene
 Title: apisirene : un package pour requeter l'API Sirene
-Version: 0.0.0.9000
+Version: 0.1
 Authors@R: 
     person("Gilles", "Fidani", , "gillesfidani@gmail.com", role = c("aut", "cre"))
 Description: Le package apisirene permet de requeter l'API Sirene de l'Insee, et telecharger des donnees sur les entreprises françaises.

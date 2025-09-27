@@ -64,14 +64,13 @@ insee_get_siret_all <- function(siret = NULL) {
 #' @title insee_get_siret_multi
 #' @description Retourne le resultat de la requete multicriteres sur numeros siret
 #' @param url l'url multicriteres a adresser a l'API
-#' @param simp if TRUE (default) simplifyVector
 #' @return un data.frame parse du resultat de la requete multicriteres
 #' @examples
 #' \dontrun{
 #' insee_get_siret_multi("https://api.insee.fr/api-sirene/3.11/siret?q=codeCommuneEtablissement%3A13*%20AND%20activitePrincipaleUniteLegale%3A10.71*&nombre=1000&curseur=*")
 #' }
 #' @export
-insee_get_siret_multi <- function(url, simp = TRUE) {
+insee_get_siret_multi <- function(url) {
   nbecho <- insee_utils_find_nb_echos_demande(url)
   nbechodemande <- 
     ifelse(length(nbecho) == 0,
@@ -92,7 +91,7 @@ insee_get_siret_multi <- function(url, simp = TRUE) {
       httr2::req_headers(
         "X-INSEE-Api-Key-Integration" = get_api_key("INSEESIRENE_APIKEY")) |> 
       httr2::req_perform() |> 
-      httr2::resp_body_json(simplifyVector = simp)
+      httr2::resp_body_json(simplifyVector = FALSE)
     maliste <- append(maliste, list(x |> insee_parse_siret_multi()))
     curseur <- x |> purrr::pluck("header", "curseur")
     curssuivant <- x |> purrr::pluck("header", "curseurSuivant")
